@@ -1,3 +1,5 @@
+import org.jenkinsci.plugins.pipeline.modeldefinition.Utils
+
 OPTIONS = [
     'provider-1',
     'provider-2'
@@ -77,13 +79,16 @@ pipeline {
 
 def build_app(list_of_apps, list_of_selected_apps) {
     list_of_apps.each { app ->
-        stage("Build ${app}") {
+        stage_name = "Build ${app}"
+        stage(stage_name) {
             if (list_of_selected_apps.contains(app)) {
                 script {
                     echo "build - ${app}"
                     echo 'TEST___VAR(2): $TEST___VAR'
                     sh 'env | grep TEST___VAR'
                 }
+            } else {
+                Utils.markStageSkippedForConditional(stage_name)
             }
         }
     }
