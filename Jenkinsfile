@@ -2,6 +2,10 @@ OPTIONS = [
     'provider-1',
     'provider-2'
 ]
+OPTIONS_2 = [
+    [name:'provider-1', value: '/libs/p1'],
+    [name:'provider-2', value: '/libs/p2']
+]
 
 properties([
     parameters([
@@ -12,39 +16,23 @@ properties([
             filterable: false,
             name: 'APP_NAME',
             script: [
-                $class: 'ScriptlerScript',
-                parameters: [
-                    [name:'provider-1', value: '/libs/p1'],
-                    [name:'provider-2', value: '/libs/p2']
+                $class: 'GroovyScript',
+                fallbackScript: [
+                    classpath: [],
+                    sandbox: true,
+                    script: 'return []'
+                ],
+                script: [
+                    classpath: [],
+                    sandbox: true,
+                    parameters: [
+                        [name:'provider-1', value: '/libs/p1'],
+                        [name:'provider-2', value: '/libs/p2']
+                    ]
                 ]
             ]
         ]
     ])
-//     parameters([
-//         [
-//             $class: 'ChoiceParameter',
-//             choiceType: 'PT_CHECKBOX',
-//             description: 'Choose application',
-//             filterable: false,
-//             name: 'APP_NAME',
-//             script: [
-//                 $class: 'GroovyScript',
-//                 fallbackScript: [
-//                     classpath: [],
-//                     sandbox: true,
-//                     script: 'return []'
-//                 ],
-//                 script: [
-//                     classpath: [],
-//                     sandbox: true,
-//                     script: """
-//                         def SRV_OPTIONS = ${OPTIONS.inspect()}
-//                         return SRV_OPTIONS as List
-//                     """
-//                 ]
-//             ]
-//         ]
-//     ])
 ])
 
 pipeline {
