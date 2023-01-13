@@ -1,18 +1,20 @@
 properties([
-    parameters([[
-        $class: 'ChoiceParameter',
-        choiceType: 'PT_CHECKBOX',
-        description: 'Choose application',
-        name: 'APP_NAME',
-        script: [
-            $class: 'ScriptlerScript',
-            scriptlerScriptId:'Environments.groovy'
-            parameters: [
-                [name:'provider-1', value: '/libs/p1'],
-                [name:'provider-2', value: '/libs/p2']
+    parameters([
+        [
+            $class: 'ChoiceParameter',
+            choiceType: 'PT_CHECKBOX',
+            description: 'Choose application',
+            name: 'APP_NAME',
+            script: [
+                $class: 'ScriptlerScript',
+                scriptlerScriptId:'Environments.groovy',
+                parameters: [
+                    [name:'provider-1', value: '/libs/p1'],
+                    [name:'provider-2', value: '/libs/p2']
+                ]
             ]
         ]
-    ]])
+    ])
 ])
 
 pipeline {
