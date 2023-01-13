@@ -50,7 +50,7 @@ pipeline {
 
             steps {
                 git branch: 'main',
-                    url: 'https://STI26/test_jenkins_2.git'
+                    url: 'https://github.com/STI26/test_jenkins_2.git'
 
                 script {
                     echo "application ${params.APP_NAME}"
