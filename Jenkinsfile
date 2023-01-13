@@ -50,7 +50,7 @@ pipeline {
 
                 script {
                     echo "Selected applications: ${params.APP_NAME}"
-                    echo "TEST___VAR(1): $TEST___VAR"
+                    echo 'TEST___VAR(1): $TEST___VAR'
                     
                     selected_apps = params.APP_NAME.split(',')
                     build_app(OPTIONS, selected_apps)
@@ -65,7 +65,7 @@ pipeline {
 
             steps {
                 script {
-                    echo "TEST___VAR(3): $TEST___VAR"
+                    echo 'TEST___VAR(3): $TEST___VAR'
                     archiveArtifacts 'app.sh'
                 }
             }
@@ -82,7 +82,7 @@ def build_app(list_of_apps, list_of_selected_apps) {
             steps {
                 script {
                     echo "build - ${app}"
-                    echo "TEST___VAR(2): $TEST___VAR"
+                    echo 'TEST___VAR(2): $TEST___VAR'
                 }
             }
         }
