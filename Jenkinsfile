@@ -77,11 +77,9 @@ def build_app(list_of_apps, list_of_selected_apps) {
     list_of_apps.each { app ->
         stage("Build ${app}") {
             if (list_of_selected_apps.contains(app)) {
-                steps {
-                    script {
-                        echo "build - ${app}"
-                        echo 'TEST___VAR(2): $TEST___VAR'
-                    }
+                script {
+                    echo "build - ${app}"
+                    echo 'TEST___VAR(2): $TEST___VAR'
                 }
             }
         }
