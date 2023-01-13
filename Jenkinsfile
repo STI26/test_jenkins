@@ -1,15 +1,29 @@
+OPTIONS = [
+    'provider-1',
+    'provider-2'
+]
+
 properties([
     parameters([
         [
             $class: 'ChoiceParameter',
             choiceType: 'PT_CHECKBOX',
             description: 'Choose application',
+            filterable: false,
             name: 'APP_NAME',
             script: [
-                $class: 'ScriptlerScript',
-                parameters: [
-                    'provider-1',
-                    'provider-2'
+                $class: 'GroovyScript',
+                fallbackScript: [
+                    classpath: [],
+                    sandbox: true,
+                    script: 'return []'
+                ],
+                script: [
+                    classpath: [],
+                    sandbox: true,
+                    script: """
+                        return ${OPTIONS.inspect()}
+                    """
                 ]
             ]
         ]
