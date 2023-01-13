@@ -1,3 +1,20 @@
+properties([
+    parameters([[
+        $class: 'ChoiceParameter',
+        choiceType: 'PT_CHECKBOX',
+        description: 'Choose application',
+        name: 'APP_NAME',
+        script: [
+            $class: 'ScriptlerScript',
+            scriptlerScriptId:'Environments.groovy'
+            parameters: [
+                [name:'provider-1', value: '/libs/p1'],
+                [name:'provider-2', value: '/libs/p2']
+            ]
+        ]
+    ]])
+])
+
 pipeline {
     agent {
         dockerfile {
@@ -5,14 +22,6 @@ pipeline {
             args '-v /var/run/docker.sock:/var/run/docker.sock \
                   --group-add docker'
         }
-    }
-
-    parameters {
-        choice(
-            name: 'APP_NAME',
-            choices: ['provider-1', 'provider-2'],
-            description: 'Choose application'
-        )
     }
 
     stages {
