@@ -17,6 +17,10 @@ pipeline {
 
     stages {
         stage('Checkout sources from GitHub') {
+            when {
+                expression { params.APP_NAME != '' }
+            }
+
             steps {
                 git branch: 'master',
                     url: 'https://STI26/test_jenkins.git'
@@ -30,6 +34,10 @@ pipeline {
         }
 
         stage('Build app') {
+            when {
+                expression { params.APP_NAME != '' }
+            }
+
             steps {
                 script {
                     sh "pwd"
@@ -41,6 +49,10 @@ pipeline {
         }
 
         stage('Collect artifacts') {
+            when {
+                expression { params.APP_NAME != '' }
+            }
+
             steps {
                 script {
                     archiveArtifacts 'app.sh'
