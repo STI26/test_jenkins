@@ -86,6 +86,12 @@ def build_app(list_of_apps, list_of_selected_apps) {
                     echo "build - ${app}"
                     echo 'TEST___VAR(2): $TEST___VAR'
                     sh 'env | grep TEST___VAR'
+                    rev = sh 'date +%H%M%S'
+                    def buildInfo = [
+                            buildVersion: "${app}-${rev}"
+                    ]
+                    writeJSON file: "${app}-${rev}.json", json: buildInfo
+                    archiveArtifacts "${app}-${ver}.json"
                 }
             } else {
                 Utils.markStageSkippedForConditional(stage_name)
