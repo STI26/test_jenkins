@@ -24,6 +24,7 @@ pipeline {
                 script {
                     echo "application ${params.APP_NAME}"
                     sh "cat /etc/*release"
+                    sh "env"
                 }
             }
         }
@@ -34,6 +35,7 @@ pipeline {
                     sh "pwd"
                     sh "ls"
                     sh "cat /etc/*release"
+                    sh "env"
                 }
             }
         }
