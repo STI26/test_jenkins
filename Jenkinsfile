@@ -76,13 +76,12 @@ pipeline {
 def build_app(list_of_apps, list_of_selected_apps) {
     list_of_apps.each { app ->
         stage("Build ${app}") {
-            when {
-                expression { list_of_selected_apps.contains(app) }
-            }
-            steps {
-                script {
-                    echo "build - ${app}"
-                    echo 'TEST___VAR(2): $TEST___VAR'
+            if (list_of_selected_apps.contains(app)) {
+                steps {
+                    script {
+                        echo "build - ${app}"
+                        echo 'TEST___VAR(2): $TEST___VAR'
+                    }
                 }
             }
         }
