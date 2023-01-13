@@ -5,6 +5,8 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 RUN apt-get update \
     && apt-get install -y --no-install-recommends
 
+RUN export TEST_VAR="123"
+
 VOLUME ["/src", "/build"]
 
 ENTRYPOINT ["bash", "-c"]
