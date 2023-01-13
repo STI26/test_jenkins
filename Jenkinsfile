@@ -25,7 +25,9 @@ properties([
                 script: [
                     classpath: [],
                     sandbox: true,
-                    parameters: OPTIONS
+                    script: """
+                        return ${OPTIONS.inspect()}
+                    """
                 ]
             ]
         ]
