@@ -22,7 +22,8 @@ properties([
                     classpath: [],
                     sandbox: true,
                     script: """
-                        return ${OPTIONS.inspect()}
+                        def SRV_OPTIONS = ${OPTIONS.inspect()}
+                        return SRV_OPTIONS as List
                     """
                 ]
             ]
