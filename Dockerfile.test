@@ -2,10 +2,9 @@ FROM ubuntu:bionic-20201119
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends
+RUN apt-get update
 
-RUN export TEST_VAR="123"
+ENV TEST___VAR='123456789'
 
 VOLUME ["/src", "/build"]
 
