@@ -2,10 +2,6 @@ OPTIONS = [
     'provider-1',
     'provider-2'
 ]
-OPTIONS_2 = [
-    [name:'provider-1', value: '/libs/p1'],
-    [name:'provider-2', value: '/libs/p2']
-]
 
 properties([
     parameters([
@@ -53,24 +49,11 @@ pipeline {
                     url: 'https://github.com/STI26/test_jenkins_2.git'
 
                 script {
-                    echo "application ${params.APP_NAME}"
-                    sh "cat /etc/*release"
-                    sh "env"
-                }
-            }
-        }
-
-        stage('Build app') {
-            when {
-                expression { params.APP_NAME != '' }
-            }
-
-            steps {
-                script {
-                    sh "pwd"
-                    sh "ls"
-                    sh "cat /etc/*release"
-                    sh "env"
+                    echo "Selected applications: ${params.APP_NAME}"
+                    echo "TEST___VAR(1): $TEST___VAR"
+                    
+                    selected_apps = params.APP_NAME.split(',')
+                    build_app(OPTIONS, selected_apps)
                 }
             }
         }
@@ -82,7 +65,24 @@ pipeline {
 
             steps {
                 script {
+                    echo "TEST___VAR(3): $TEST___VAR"
                     archiveArtifacts 'app.sh'
+                }
+            }
+        }
+    }
+}
+
+def build_app(list_of_apps, list_of_selected_apps) {
+    list_of_apps.each { app ->
+        stage("Build ${app}") {
+            when {
+                expression { list_of_selected_apps.contains(app) }
+            }
+            steps {
+                script {
+                    echo "build - ${app}"
+                    echo "TEST___VAR(2): $TEST___VAR"
                 }
             }
         }
