@@ -25,10 +25,7 @@ properties([
                 script: [
                     classpath: [],
                     sandbox: true,
-                    parameters: [
-                        [name:'provider-1', value: '/libs/p1'],
-                        [name:'provider-2', value: '/libs/p2']
-                    ]
+                    parameters: OPTIONS
                 ]
             ]
         ]
