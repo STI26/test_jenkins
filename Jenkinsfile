@@ -38,8 +38,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile.test'
-            args '-v /var/run/docker.sock:/var/run/docker.sock \
-                  --group-add docker'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
 
