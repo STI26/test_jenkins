@@ -95,6 +95,7 @@ def build_app(list_of_apps, list_of_selected_apps) {
                     echo 'TEST___VAR(2): $TEST___VAR'
                     sh 'env | grep TEST___VAR'
                     rev = sh 'date +%H%M%S'
+                    echo "${app}-${rev}.json"
                     def buildInfo = [
                             buildVersion: "${app}-${rev}"
                     ]
