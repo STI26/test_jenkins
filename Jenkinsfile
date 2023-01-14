@@ -94,13 +94,20 @@ def build_app(list_of_apps, list_of_selected_apps) {
                     echo "build - ${app}"
                     echo 'TEST___VAR(2): $TEST___VAR'
                     sh 'env | grep TEST___VAR'
-                    rev = sh 'date +%H%M%S'
+
+                    rev = sh (
+                        script: 'date +%H%M%S',
+                        returnStdout: true
+                    ).trim()
+                    f_name = "${app}-${rev}.json"
+
                     echo "${app}-${rev}.json"
+                    
                     def buildInfo = [
                             buildVersion: "${app}-${rev}"
                     ]
-                    writeJSON file: "${app}-${rev}.json", json: buildInfo
-                    archiveArtifacts "${app}-${ver}.json"
+                    writeJSON file: f_name, json: buildInfo
+                    archiveArtifacts f_name
                 }
             } else {
                 Utils.markStageSkippedForConditional(stage_name)
