@@ -59,6 +59,14 @@ pipeline {
                     build_app(OPTIONS, selected_apps)
                 }
             }
+            
+            post {
+                always {
+                    script {
+                        currentBuild.displayName = "${APP_NAME}"
+                    }
+                }
+            }
         }
 
         stage('Collect artifacts') {
