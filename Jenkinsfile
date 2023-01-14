@@ -63,7 +63,7 @@ pipeline {
             post {
                 always {
                     script {
-                        currentBuild.displayName = "${APP_NAME}"
+                        currentBuild.displayName = "${BUILD_NUMBER}-${APP_NAME}"
                     }
                 }
             }
