@@ -52,8 +52,9 @@ pipeline {
 
                 script {
                     echo "Selected applications: ${params.APP_NAME}"
-                    echo "TEST___VAR(1): ${env.TEST___VAR}"
-                    sh 'env | grep TEST___VAR'
+                    sh 'ls'
+                    sh 'pwd'
+                    
                     
                     selected_apps = params.APP_NAME.split(',')
                     build_app(OPTIONS, selected_apps)
