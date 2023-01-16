@@ -93,7 +93,7 @@ def build_app(list_of_apps, list_of_selected_apps) {
                 script {
                     echo "build - ${app}"
                     echo 'TEST___VAR(2): $TEST___VAR'
-                    sh 'env | grep TEST___VAR'
+                    sh 'sleep 30'
 
                     rev = sh (
                         script: 'date +%H%M%S',
