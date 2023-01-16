@@ -54,7 +54,7 @@ pipeline {
                     echo "Selected applications: ${params.APP_NAME}"
                     echo 'TEST___VAR(1): $TEST___VAR'
                     sh 'env | grep TEST___VAR'
-                    sh 'ubset TEST___VAR'
+                    sh 'unset TEST___VAR'
                     sh 'env | grep TEST___VAR'
                     
                     selected_apps = params.APP_NAME.split(',')
